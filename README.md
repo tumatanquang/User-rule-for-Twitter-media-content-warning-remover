@@ -13,7 +13,9 @@ Now that you know how to write filter rules, let's get started!
 twitter.com#%#!function(){var e=function(e,i){for(var n=[],t=Object.entries(e);t.length>0;){var o=t.pop();i.includes(o[0])&&n.push(o[1]),null!=o[1]&&"object"==typeof o[1]&&(t=t.concat(Object.entries(o[1])))}return n},i=function(i){for(var n of e(i,["media"]))if(Array.isArray(n))for(var t of n)"object"==typeof t&&(delete t.sensitive_media_warning,t.ext_sensitive_media_warning=null);for(var n of e(i,["legacy"]))null!=n&&n.hasOwnProperty("possibly_sensitive")&&"boolean"==typeof n.possibly_sensitive&&(n.possibly_sensitive=!1)},n=window.JSON.parse;Object.defineProperty(JSON,"parse",{value:function(e){var t=n(e);try{null!=t&&i(t)}catch(o){console.log(o)}return t},writable:!1})}();
 ```
 
-#### NOTE: The [x.com](x.com) domain is just a domain that redirects to [twitter.com](twitter.com), but if you can browse Twitter on the [x.com](x.com) domain, you also need to add x.com to the above rule:
+#### NOTE:
+
+The [x.com](x.com) domain is just a domain that redirects to [twitter.com](twitter.com), but if you can browse Twitter on the [x.com](x.com) domain, you also need to add x.com to the above rule:
 
 ```javascript
 twitter.com,x.com#%#!function(){var e=function(e,i){for(var n=[],t=Object.entries(e);t.length>0;){var o=t.pop();i.includes(o[0])&&n.push(o[1]),null!=o[1]&&"object"==typeof o[1]&&(t=t.concat(Object.entries(o[1])))}return n},i=function(i){for(var n of e(i,["media"]))if(Array.isArray(n))for(var t of n)"object"==typeof t&&(delete t.sensitive_media_warning,t.ext_sensitive_media_warning=null);for(var n of e(i,["legacy"]))null!=n&&n.hasOwnProperty("possibly_sensitive")&&"boolean"==typeof n.possibly_sensitive&&(n.possibly_sensitive=!1)},n=window.JSON.parse;Object.defineProperty(JSON,"parse",{value:function(e){var t=n(e);try{null!=t&&i(t)}catch(o){console.log(o)}return t},writable:!1})}();
