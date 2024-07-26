@@ -10,15 +10,7 @@ Now that you know how to write filter rules, let's get started!
 - After making sure your ad-blocking extension supports JavaScript rules and User Rules, open [User Rules](https://adguard.com/kb/adguard-browser-extension/features/filters/#user-rules) and add the following code:
 
 ```javascript
-twitter.com#%#!function(){var e=function(e,i){for(var n=[],t=Object.entries(e);t.length>0;){var o=t.pop();i.includes(o[0])&&n.push(o[1]),null!=o[1]&&"object"==typeof o[1]&&(t=t.concat(Object.entries(o[1])))}return n},i=function(i){for(var n of e(i,["media"]))if(Array.isArray(n))for(var t of n)"object"==typeof t&&(delete t.sensitive_media_warning,t.ext_sensitive_media_warning=null);for(var n of e(i,["legacy"]))null!=n&&n.hasOwnProperty("possibly_sensitive")&&"boolean"==typeof n.possibly_sensitive&&(n.possibly_sensitive=!1)},n=window.JSON.parse;Object.defineProperty(JSON,"parse",{value:function(e){var t=n(e);try{null!=t&&i(t)}catch(o){console.log(o)}return t},writable:!1})}();
-```
-
-#### NOTE:
-
-The [x.com](x.com) domain is just a domain that redirects to [twitter.com](twitter.com), but if you can browse Twitter on the [x.com](x.com) domain, you also need to add x.com to the above rule:
-
-```javascript
-twitter.com,x.com#%#!function(){var e=function(e,i){for(var n=[],t=Object.entries(e);t.length>0;){var o=t.pop();i.includes(o[0])&&n.push(o[1]),null!=o[1]&&"object"==typeof o[1]&&(t=t.concat(Object.entries(o[1])))}return n},i=function(i){for(var n of e(i,["media"]))if(Array.isArray(n))for(var t of n)"object"==typeof t&&(delete t.sensitive_media_warning,t.ext_sensitive_media_warning=null);for(var n of e(i,["legacy"]))null!=n&&n.hasOwnProperty("possibly_sensitive")&&"boolean"==typeof n.possibly_sensitive&&(n.possibly_sensitive=!1)},n=window.JSON.parse;Object.defineProperty(JSON,"parse",{value:function(e){var t=n(e);try{null!=t&&i(t)}catch(o){console.log(o)}return t},writable:!1})}();
+twitter.com,x.com#%#!function(){let e=(e,t)=>{let r=[],i=Object.entries(e);for(;i.length;){let[s,o]=i.pop();t.includes(s)&&r.push(o),o&&"object"==typeof o&&i.push(...Object.entries(o))}return r},t=t=>{e(t,["media"]).forEach(e=>{Array.isArray(e)&&e.forEach(e=>{"object"==typeof e&&(delete e.sensitive_media_warning,e.ext_sensitive_media_warning=null)})}),e(t,["legacy"]).forEach(e=>{e&&e.hasOwnProperty("possibly_sensitive")&&"boolean"==typeof e.possibly_sensitive&&(e.possibly_sensitive=!1)})},r=t=>{e(t,["entries"]).forEach(e=>{if(Array.isArray(e))for(let t=e.length-1;t>=0;t--)/^(promoted-tweet|pinned-tweets|who-to-subscribe)/.test(e[t].entryId)&&e.splice(t,1)})},i=t=>{e(t,["items"]).forEach(t=>{if(Array.isArray(t))for(let r=t.length-1;r>=0;r--)e(t[r],["item"]).forEach(i=>{e(i,["itemContent"]).forEach(e=>{e&&Object.keys(e).some(e=>/promoted_?metadata/ig.test(e))&&t.splice(r,1)})})})},s=JSON.parse;Object.defineProperty(JSON,"parse",{value(e){let o;try{(o=s(e))&&(t(o),r(o),i(o))}catch(n){console.error(n)}return o},writable:!1})}();
 ```
 
 Remember to click **Save**, then reload the page to apply the rule.
